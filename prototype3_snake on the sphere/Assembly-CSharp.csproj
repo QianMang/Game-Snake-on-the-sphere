@@ -63,9 +63,13 @@
   <ItemGroup>
     <Compile Include="Assets\Script\CameraMove.cs" />
     <Compile Include="Assets\Script\GameObjectPool.cs" />
+    <Compile Include="Assets\Script\Object_Diamond.cs" />
+    <Compile Include="Assets\Script\ObjectManager.cs" />
+    <Compile Include="Assets\Script\RotateSelf.cs" />
     <Compile Include="Assets\Script\Snake.cs" />
     <Compile Include="Assets\Script\SnakeBody.cs" />
     <Compile Include="Assets\Script\SnakeHead.cs" />
+    <Compile Include="Assets\Script\UIManager.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>X:/Github/Game-Snake-on-the-sphere/prototype3_snake on the sphere/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

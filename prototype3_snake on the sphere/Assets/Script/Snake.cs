@@ -7,7 +7,8 @@ public class Snake : MonoBehaviour {
     
     public const float velocity=0.5f;
     public const float angleV = 3f;
-    
+
+    public GameObject mainCamera;
     public GameObject sphere;
     public GameObject snakeHead;
     private List<GameObject> _snakeBody=new List<GameObject>() { };
@@ -16,7 +17,7 @@ public class Snake : MonoBehaviour {
 
     public List<Vector3> path=new List<Vector3>() { };
     int path_index=0;
-    public int maxPathIndex = 1000;
+    public int maxPathIndex = 10000;
     private GameObject finalBody;    //the last body
     private Vector3 rotateAxis;
 
@@ -26,6 +27,7 @@ public class Snake : MonoBehaviour {
         finalBody = snakeHead;
         rotateAxis = -snakeHead.transform.right;
         _snakeBody.Add(snakeHead);
+        mainCamera.GetComponent<UIManager>().SetLengthText(_snakeBody.Count);
 	}
 	
 	// Update is called once per frame
@@ -114,6 +116,7 @@ public class Snake : MonoBehaviour {
         int newIndex = finalBody.GetComponent<SnakeBody>().GetIndex();
         finalBody= GameObjectPool.GetInstance().Object_Instantiate(BodyPrefeb, newPosition.x, newPosition.y, newPosition.z, q,newIndex-10);
         _snakeBody.Add(finalBody);
+        mainCamera.GetComponent<UIManager>().SetLengthText(_snakeBody.Count);
     }
 
    

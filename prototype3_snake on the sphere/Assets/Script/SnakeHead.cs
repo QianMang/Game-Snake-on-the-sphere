@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SnakeHead : SnakeBody{
-
+    public GameObject mainCamera;
 
     private void OnTriggerEnter(Collider other)
     {
         print("yes");
-        if (other.tag == "item")
+        if (other.tag == "diamond")
         {
-            _Snake.GetComponent<Snake>().CreateNewBody();
+            mainCamera.GetComponent<Object_Diamond>().Effect();
+            
+            
         }
         if (other.tag == "SnakeBody")
         {
