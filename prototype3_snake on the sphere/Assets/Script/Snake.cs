@@ -5,8 +5,9 @@ public class Snake : MonoBehaviour {
 
     //private int snakeLength=1;
     
-    public const float velocity=0.5f;
-    public const float angleV = 3f;
+    private float velocity=0.65f;     //0.5 ;10     0.7;8
+    private int IndexGap = 8;     
+    private const float angleV = 3f;
 
     public GameObject mainCamera;
     public GameObject sphere;
@@ -17,7 +18,7 @@ public class Snake : MonoBehaviour {
 
     public List<Vector3> path=new List<Vector3>() { };
     int path_index=0;
-    public int maxPathIndex = 10000;
+    public int maxPathIndex = 4000;
     private GameObject finalBody;    //the last body
     private Vector3 rotateAxis;
 
@@ -32,8 +33,8 @@ public class Snake : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //print(path_index - finalBody.GetComponent<SnakeBody>().GetIndex());
-        //print(path.Count);
+       
+        print(path_index.ToString()+"  "+finalBody.GetComponent<SnakeBody>().GetIndex().ToString());
         CreateNewPath();
         MoveSnake();
         if (Input.anyKey)
@@ -63,8 +64,7 @@ public class Snake : MonoBehaviour {
         }
         else
         {
-            path.Add(newPosition);
-            //path_index++;
+            path.Add(newPosition);   
         }
     }
 
@@ -113,8 +113,13 @@ public class Snake : MonoBehaviour {
     {
         Vector3 newPosition = Vector3.zero;//= path[path.Count - 1];
         Quaternion q = Quaternion.identity;
-        int newIndex = finalBody.GetComponent<SnakeBody>().GetIndex();
-        finalBody= GameObjectPool.GetInstance().Object_Instantiate(BodyPrefeb, newPosition.x, newPosition.y, newPosition.z, q,newIndex-10);
+        int final_Index = finalBody.GetComponent<SnakeBody>().GetIndex();
+        int newIndex = final_Index - IndexGap;
+        if (newIndex < 0)
+        {
+            newIndex = maxPathIndex + newIndex;
+        }
+        finalBody= GameObjectPool.GetInstance().Object_Instantiate(BodyPrefeb, newPosition.x, newPosition.y, newPosition.z, q,newIndex);
         _snakeBody.Add(finalBody);
         mainCamera.GetComponent<UIManager>().SetLengthText(_snakeBody.Count);
     }

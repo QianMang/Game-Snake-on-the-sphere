@@ -38,9 +38,9 @@ public class SnakeBody : MonoBehaviour {
         return index;
     }
 
-    public void ResetIndex(int gap)
-    {
-        index -= gap;
-    }
+    //public void ResetIndex(int gap)
+    //{
+    //    index -= gap;
+    //}
 
 }
