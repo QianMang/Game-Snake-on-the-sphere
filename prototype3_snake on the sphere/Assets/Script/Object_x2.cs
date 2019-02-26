@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Object_x2 : ObjectManager {
-    
 
-public override void CreateObject()
+    const float buffTime = 15;
+    public override void CreateObject()
     {
         //random position
         float newPosition_y = Random.Range(-Sphere_Radius, Sphere_Radius);
@@ -33,12 +33,27 @@ public override void CreateObject()
         StartCoroutine(BuffTime());
     }
 
+    IEnumerator BuffTime()
+    {
+        yield return new WaitForSeconds(buffTime);
+        _Snake.GetComponent<Snake>().SetEffectTime(1);
+        this.GetComponent<UIManager>().BuffActive(false);
+        CurNum--;
+    }
+
+    IEnumerator WaitForCreate(float time)
+    {
+        yield return new WaitForSeconds(time);
+        CreateObject();
+    }
+
+
     // Use this for initialization
     void Start () {
         CurNum = 0;
         MaxNum = 1;
-        CreateObject();
-        CurNum++;
+        //CreateObject();
+        //CurNum++;
 	}
 
     private void Update()
@@ -50,19 +65,7 @@ public override void CreateObject()
         }
     }
 
-    IEnumerator BuffTime()
-    {
-        yield return new WaitForSeconds(10);
-        _Snake.GetComponent<Snake>().SetEffectTime(1);
-        this.GetComponent<UIManager>().BuffActive(false);
-        CurNum--;
-    }
-
-    IEnumerator WaitForCreate(float time)
-    {
-        yield return new WaitForSeconds(time);
-        CreateObject();
-    }
+    
 
 
 	

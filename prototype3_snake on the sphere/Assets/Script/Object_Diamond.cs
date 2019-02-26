@@ -7,6 +7,12 @@ public class Object_Diamond :ObjectManager {
     //___GameObject
     private void Start()
     {
+        StartCoroutine(WaitForCreate());
+    }
+
+    IEnumerator WaitForCreate()
+    {
+        yield return new WaitForSeconds(2);
         CreateObject();
     }
 
