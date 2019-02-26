@@ -4,9 +4,10 @@ using UnityEngine;
 
 public abstract class ObjectManager : MonoBehaviour {
 
-    public abstract int CurNum { get; set; }
-    public abstract int MaxNum { get; }
+    public int CurNum;
+    public int MaxNum;
     public GameObject object_prefeb;
+    //public GameObject mainCamera;
     public GameObject _Snake;
     protected GameObject[] object_cur=new GameObject[10];
     protected const float Sphere_Radius = 1.05f;

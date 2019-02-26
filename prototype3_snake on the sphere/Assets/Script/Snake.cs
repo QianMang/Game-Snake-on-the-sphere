@@ -8,7 +8,7 @@ public class Snake : MonoBehaviour {
     private float velocity=0.65f;     //0.5 ;10     0.7;8
     private int IndexGap = 8;     
     private const float angleV = 3f;
-
+    
     public GameObject mainCamera;
     public GameObject sphere;
     public GameObject snakeHead;
@@ -22,7 +22,9 @@ public class Snake : MonoBehaviour {
     private GameObject finalBody;    //the last body
     private Vector3 rotateAxis;
 
-    //int k = 0;
+    private int effectTime = 1;    //the effect time of diamond eating     //get set
+    private bool GameFlag = true;
+  
 	// Use this for initialization
 	void Start () {
         finalBody = snakeHead;
@@ -33,8 +35,9 @@ public class Snake : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-       
-        print(path_index.ToString()+"  "+finalBody.GetComponent<SnakeBody>().GetIndex().ToString());
+
+        if (GameFlag == false)
+            return;
         CreateNewPath();
         MoveSnake();
         if (Input.anyKey)
@@ -124,5 +127,19 @@ public class Snake : MonoBehaviour {
         mainCamera.GetComponent<UIManager>().SetLengthText(_snakeBody.Count);
     }
 
-   
+   public void SetGameFlag()
+    {
+        GameFlag = false;
+    }
+
+    public int GetEffectTime()
+    {
+        return effectTime;
+    }
+
+    public void SetEffectTime(int i)
+    {
+        effectTime = i;
+    }
+
 }

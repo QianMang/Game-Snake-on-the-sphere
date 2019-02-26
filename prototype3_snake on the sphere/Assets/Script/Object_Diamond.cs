@@ -3,15 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Object_Diamond :ObjectManager {
-    public override int CurNum
-    {
-        get {return 0; }
-        set { }
-    }
-    public override int MaxNum
-    {
-        get { return 1; }
-    }
+    
     //___GameObject
     private void Start()
     {
@@ -34,7 +26,10 @@ public class Object_Diamond :ObjectManager {
 
     public override void Effect()
     {
-        _Snake.GetComponent<Snake>().CreateNewBody();
+        int effectTime = _Snake.GetComponent<Snake>().GetEffectTime(); 
+        for(int i=0;i<effectTime;i++)
+            _Snake.GetComponent<Snake>().CreateNewBody();
+       
         DisableObject();
         CreateObject();
     }

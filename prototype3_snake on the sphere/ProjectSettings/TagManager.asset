@@ -8,6 +8,7 @@ TagManager:
   - SnakeBody
   - item
   - diamond
+  - x2
   layers:
   - Default
   - TransparentFX
